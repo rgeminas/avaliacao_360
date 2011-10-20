@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<title>Avaliação</title>
+	{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		   		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+	{% endif %}
+	<h2>Escolha uma avaliação</h2>
+	<div id='feedback_sets'>
+	<ul>
+		{% for set in sets %}
+	    	<li>Avaliação da data: <a href="./{{set.id}}/">{{set.date}}</a></li>
+	    {% endfor %}
+    </ul>
+	</div>
+	<br />
+	<a href="../">Voltar para página inicial</a>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<title>Avaliar membros</title>
+	{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		   		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+	{% endif %}
+	<h2>Resultados da avaliação:</h2>
+	<div id='evaluee_info'>
+	<div id='name'>{{ member }}</div>
+	<div id='board'>{{ member.board }}</div>
+	{% if member.picture %}
+		<div id='picture'><img src='{{ member.picture.url }}' width='100px', height='150px'/></div>
+	{% endif %}
+</div>
+
+	<div id='criteria'>
+	{% for criterion in criteria %}
+    	<div id='criterion_result_yours'>Média das avaliações para {{criterion.verbose_name}}: {{criterion.average}}</div>
+    	<div id='criterion_result_board'>Média das avaliações para {{criterion.verbose_name}} ({{ member.board }}): {{criterion.average_board}}</div>
+    	<div id='criterion_result_all'>Média das avaliações para {{criterion.verbose_name}} (total): {{criterion.average_all}}</div>
+    	<br />
+    {% endfor %}
+	</div>
+	<a href="./export/">Exportar avaliação</a>
+	<br />
+	<a href="../">Voltar para vista geral</a>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<title>Avaliar membros</title>
+	{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		   		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+	{% endif %}
+	{% if member_list %}
+	<div id='menu'>
+		<h2>Membros que você pode avaliar:</h2>
+		<ul>
+			{% for member in member_list %}
+			<li>
+				<a href="./{{ member.id }}/">{{member.first_name}} {{member.last_name}}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% else %}
+	<p>
+		Não há membros para avaliar
+	</p>
+	{% endif %}
+	<br />
+	<a href="../">Voltar para página inicial</a>
+</html>

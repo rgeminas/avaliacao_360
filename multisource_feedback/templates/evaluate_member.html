@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<title>Avaliar membro</title>
+{% load get_range %}
+{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	   		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+{% endif %}
+
+<div id='evaluee_info'>
+	<div id='name'>{{ evaluee }}</div>
+	{% if evaluee.picture %}
+		<div id='picture'><img src='{{ evaluee.picture.url }}' width='100px', height='150px'/></div>
+		<div id='board'>{{ evaluee.board }}</div>
+	{% endif %}
+</div>
+
+<div id='criteria'>
+	<form action="./submit/" method="post">
+		{% csrf_token %}
+		{% for criterion in criteria %}
+	    	<br />
+	    	<label for="choice{{ forloop.counter }}">{{ criterion.verbose_name }}</label>
+	    	<br />
+	    	{% for i in 5|get_range_1 %}
+	    		<label for="choice{{ i }}">{{ i }}</label> 
+	    		<input type="radio" name="{{ criterion.name }}" id="choice{{ i }}" value="{{ i }}" />
+	    		|
+	    	{% endfor %}
+		{% endfor %}
+		<br />
+		<input type="submit" value="Enviar avaliação" />
+	</form>
+	<br />
+	<a href="../">Voltar para todos os membros</a>
+</div>

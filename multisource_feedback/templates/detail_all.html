@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<title>Verificar avaliação de membro</title>
+	{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		   		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+	{% endif %}
+	{% if members %}
+	<div id='menu'>
+		<h2>Verificar avaliação de membro:</h2>
+		<ul>
+			{% for member in members %}
+			<li>
+				<a href="./{{ member.id }}/">{{member.first_name}} {{member.last_name}}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<a href="./export/">Exportar todas</a>
+	{% else %}
+	<p>
+		Não há avaliações para se ver.
+	</p>
+	{% endif %}
+	<br />
+	<a href="../">Voltar para escolha de avaliação</a>
+</html>

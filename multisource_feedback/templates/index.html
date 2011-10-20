@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<title>Avaliação 360</title>
+	{% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		   		<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+	{% endif %}
+	<h2>Seja bem-vindo, {{user.first_name}}! Selecione uma das opções:</h2>
+	<div id='menu'>
+		<ul>
+			<li>
+				<a href='./evaluate/'>Avaliar um membro</a>;
+			</li>
+			<li>
+				<a href='./view/'>Conferir a sua avaliação</a>;
+			</li>
+			<li>
+				<a href='./logout/'>Sair</a>.
+			</li>
+		</ul>
+		
+	</div>
+	
+</html>	
